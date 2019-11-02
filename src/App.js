@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import shortId from 'short-id';
 import Clock from './Clock';
+import Form from './Form';
 import './App.css';
 
 const copyArrayOfObjects = (arr) => arr.map(obj => {
@@ -14,26 +15,19 @@ class App extends Component {
       clocks: [
         //{name: 'Minsk', timeZone: '3', id: 0, }
       ],
-      currentName: "",
-      currentTimeZone: "",
     }
-    this.handleChange = this.handleChange.bind(this);
     this.handleAdd = this.handleAdd.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
   }
 
-  handleChange(e) {
-    this.setState({[e.target.name]: e.target.value})
-  };
-
-  handleAdd(e) {
+  handleAdd(e, name, timeZone) {
     e.preventDefault();
     this.setState({
       clocks: [
         ...copyArrayOfObjects(this.state.clocks), 
         {
-          name: this.state.currentName, 
-          timeZone: this.state.currentTimeZone, 
+          name: name, 
+          timeZone: timeZone, 
           id: shortId.generate()
         }
       ]});
@@ -49,17 +43,11 @@ class App extends Component {
   }
 
   render() {
-    const { currentName, currentTimeZone, clocks } = this.state;
+    const {clocks} = this.state;
     return (
       <div className="App">
-        <form className="form" onSubmit={this.handleAdd}>
-          <label htmlFor="currentName">Название</label>
-          <input name="currentName" type="text" value={currentName} onChange={this.handleChange} />
-          <label htmlFor="currentTimeZone">Временная зона</label>
-          <input name="currentTimeZone" type="text" value={currentTimeZone} onChange={this.handleChange} />
-          <input type="submit" value="добавить"/>
-        </form>
-        <div>
+        <Form handleAdd={this.handleAdd}/>
+        <div className="clocks-wrapper">
           {
             clocks.map(clock => <Clock key={clock.id} clock={clock} handleDelete={this.handleDelete}/>)
           }

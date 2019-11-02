@@ -1,5 +1,86 @@
 .App {
-  text-align: center;
-  max-width: 1200px;
+  max-width: 840px;
   margin: 20px auto;
+}
+
+/* Form */
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.label {
+  padding: 10px;
+}
+
+.btn {
+  margin: 10px;
+}
+
+/* Clocks */
+.clocks-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.clock-wrapper {
+  display: flex;
+  margin: 10px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.clock-watches {
+  position: relative;
+  margin: 20px;
+  width: 80px;
+  height: 80px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
+
+.clock-hand {
+  width: 1px;
+  height: 36px;
+  position: absolute;
+  left: 40px;
+  top: 4px;
+  background: black;
+  transform-origin: 50% 100%;
+}
+
+.clock-hand__hours {
+  height: 24px;
+  top: 16px;
+}
+
+.clock-hand::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  z-index: 100;
+  border-top: 1px solid black;
+  border-right: 1px solid black;
+  top: 0;
+  left: -6px;
+  transform: rotate(-45deg);
+}
+
+.clock-hand__seconds::before {
+  content: none;
+}
+
+.clock-btn {
+  position: absolute;
+  right: -12px;
+  top: -12px;
+  border-radius: 50%;
 }

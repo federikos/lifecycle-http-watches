@@ -38,9 +38,15 @@ class Clock extends Component {
     const {handleDelete, clock} = this.props;
 
     return (
-      <div>
-        {`${hours}:${minutes}:${seconds}`}
-        <button onClick={() => handleDelete(clock.id)}>delete clock</button>
+      <div className="clock-wrapper">
+        <span className="clock-name">{clock.name}</span>
+        <div className="clock-watches">
+          <div className="clock-hand clock-hand__hours" style={{transform: `rotate(${hours * 360 / 12}deg)`}}></div>
+          <div className="clock-hand" style={{transform: `rotate(${minutes * 360 / 60}deg)`}}></div>
+          <div className="clock-hand clock-hand__seconds" style={{transform: `rotate(${seconds * 360 / 60}deg)`}}></div>
+          <button className="clock-btn" onClick={() => handleDelete(clock.id)} aria-label="delete clock">x</button>
+        </div>
+        <span className="clock-digital">{`${hours}:${minutes}:${seconds}`}</span>
       </div>
     );
   }
