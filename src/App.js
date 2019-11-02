@@ -13,7 +13,9 @@ class App extends Component {
     super(props);
     this.state = {
       clocks: [
-        //{name: 'Minsk', timeZone: '3', id: 0, }
+        {name: 'Minsk', timeZone: '3', id: shortId.generate(), },
+        {name: 'New York', timeZone: '-4', id: shortId.generate(), },
+        {name: 'Paris', timeZone: '1', id: shortId.generate(), }
       ],
     }
     this.handleAdd = this.handleAdd.bind(this);
